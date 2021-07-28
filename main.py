@@ -43,7 +43,7 @@ app = FastAPI()
 origins = [
     "http://localhost",
     "http://localhost:8000",
-    "http://oslomapsfrontend.azurewebsite.net"
+    "http://oslomapsfrontend.azurewebsites.net"
 ]
 
 app.add_middleware(
