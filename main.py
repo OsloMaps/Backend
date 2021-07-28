@@ -33,7 +33,7 @@ def map_grunnkretser(cursor) -> dict:
     cursor.execute("SELECT * FROM Grunnkrets;")
     db_data = cursor.fetchall()
     for row in db_data:
-        grunnkretser[row[0]] = {"GrunnkretsNavn" : row[1], "BydelID" : row[3]}
+        grunnkretser[row[0]] = {"GrunnkretsNavn" : row[1], "BydelID" : row[3], "Innbyggertall" : row[7]}
     return grunnkretser
 
 cursor = setupDb()
@@ -95,7 +95,8 @@ def get_grunnkrets_grenser():
             bydelID = grunnkretser[grunnkretsID]["BydelID"]
             d = {"GrunnkretsID": grunnkretsID, "Koordinater": [],
                  "GrunnkretsNavn" : grunnkretser[grunnkretsID]["GrunnkretsNavn"], "BydelID" : bydelID,
-                 "BydelNavn": bydeler[bydelID]["BydelNavn"], "BydelFarge" : bydeler[bydelID]["BydelFarge"]}
+                 "BydelNavn": bydeler[bydelID]["BydelNavn"], "BydelFarge" : bydeler[bydelID]["BydelFarge"],
+                 "InnbyggerTall": grunnkretser[grunnkretsID]["Innbyggertall"]}
             for row in grense_dict[grense]:
                 d["Koordinater"].append(row)
             grenser["Grenser"].append(d)
